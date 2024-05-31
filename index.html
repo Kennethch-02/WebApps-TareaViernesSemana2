@@ -8,21 +8,31 @@
     <div id="output"></div>
     <!-- Div para mostrar información del carro -->
     <div id="cars"></div>
+    <!-- Div para mostrar información de la moto -->
+    <div id="moto"></div>
     <!-- Div para mostrar el resultado de la operación matemática -->
     <div id="result"></div>
     
     <script>
         // Solicita el nombre del usuario
         var nombre = prompt("Dame tu nombre");
+        // Solicita el apellido del usuario
+        var apellido = prompt("Dame tu apellido");
         // Solicita la edad del usuario
         var edad = prompt("Dame tu edad");
+        // Solicita la fecha de nacimiento del usuario
+        var fechaNacimiento = prompt("Dame tu fecha de nacimiento (DD/MM/AAAA)");
 
         // Función para crear un mensaje de saludo
-        function saludar(n, e) {
-            // Usando la sintaxis de plantilla de cadena (template string)
-            var mensaje = `Hola, me llamo ${n} y tengo ${e} años.`;
+        function saludar(n, a, e, fn) {
+            var mensaje = `Hola, me llamo ${n} ${a}, tengo ${e} años y nací el ${fn}.`;
 
-            // Retorna el mensaje de saludo
+            if (parseInt(e) >= 18) {
+                mensaje += " Soy mayor de edad.";
+            } else {
+                mensaje += " Soy menor de edad.";
+            }
+
             return mensaje;
         }
 
@@ -30,33 +40,22 @@
         var outputDiv = document.getElementById("output");
 
         // Llamar a la función saludar y asignar el resultado al contenido del div
-        outputDiv.innerHTML = saludar(nombre, edad);
+        outputDiv.innerHTML = saludar(nombre, apellido, edad, fechaNacimiento);
 
-        // Crear un objeto llamado car con 4 atributos
-        const car = {
-            name: "BMW",
-            modelo: "BMW Serie 2 Active Tourer.",
-            color: "Black",
-            año: "2009"
-        };
-
-        // Obtener el elemento div con id "cars"
-        var carsDiv = document.getElementById("cars");
-
-        // Asignar el contenido del div con id "cars" con los detalles del objeto car
-        carsDiv.innerHTML = `El ${car.name} tiene las siguientes características: Modelo: ${car.modelo} - Color: ${car.color}`;
-
-        // Crear un objeto llamado carro con 3 atributos
+        // Crear un objeto llamado carro con 4 atributos
         const carro = {
             marca: "BMW",
             modelo: "ix1",
-            color: "Negro"
+            color: "Negro",
+            año: "2022",
+            precio: "$50,000"
         };
 
-        // Crear un objeto llamado moto con 2 atributos
+        // Crear un objeto llamado moto con 3 atributos
         const moto = {
             marca: "Yamaha",
-            color: "Blanco"
+            color: "Blanco",
+            tipo: "Deportiva"
         };
 
         // Obtener el elemento div con id "cars"
@@ -65,8 +64,8 @@
         var motocicleta = document.getElementById("moto");
 
         // Crear mensajes con detalles de carro y moto usando template strings
-        var msj = `El ${carro.marca} es de modelo: ${carro.modelo}, y entre sus características, el color es ${carro.color}`;
-        var msj2 = `La moto es <a href='#'>${moto.marca}</a> y su color es ${moto.color}`;
+        var msj = `El ${carro.marca} de modelo ${carro.modelo} (${carro.año}) tiene un color ${carro.color} y cuesta ${carro.precio}.`;
+        var msj2 = `La moto es una ${moto.marca} ${moto.tipo} y su color es ${moto.color}.`;
 
         // Asignar los mensajes a los divs correspondientes
         carDiv.innerHTML = msj;
@@ -127,8 +126,13 @@
 
         // Crear un array de autos
         const autos = ["Mazda", "BMW", "Honda"];
-        // Añadir un nuevo auto al array
+        // Añadir nuevos autos al array
         autos.push("Hyundai");
+        autos.push("Toyota");
+        autos.push("Ford");
+
+        // Aplicar un nuevo método de array: sort
+        autos.sort();
 
         // Mostrar una alerta con el contenido del array autos
         alert(autos);
